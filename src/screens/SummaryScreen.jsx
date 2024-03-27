@@ -6,27 +6,43 @@ import SummaryItem from "../components/SummaryItem";
 
 export default function SummaryScreen() {
   const totalNumberOfTransactions = transactionData.length;
+
   const totalBalance = transactionData.reduce(
     (acc, curr) => acc + curr.price,
     0
   );
+
   const highestSpending = transactionData.reduce((acc, curr) => {
-    return acc > curr.price ? acc : curr.price;
-  }, 0);
+    return acc.price > curr.price ? acc : curr;
+  }).price;
 
   const lowestSpending = transactionData.reduce((acc, curr) => {
-    return acc < curr.price ? acc : curr.price;
-  }, transactionData[0]);
+    return acc.price < curr.price ? acc : curr;
+  }).price;
+
+  const transactionWithHighestSpending = transactionData.reduce((acc, curr) => {
+    return acc.price > curr.price ? acc : curr;
+  });
+
+  const transactionWithLowestSpending = transactionData.reduce((acc, curr) => {
+    return acc.price < curr.price ? acc : curr;
+  });
+
+  const highestSpendingName = transactionWithHighestSpending.storeName;
+  const lowestSpendingName = transactionWithLowestSpending.storeName;
 
   return (
     <View style={styles.container}>
       <SummaryItem label={"Transactions"} value={totalNumberOfTransactions} />
       <SummaryItem label={"Balance"} value={`$${totalBalance.toFixed(2)}`} />
       <Text style={styles.summarySubtitle}>High Spending</Text>
-      <SummaryItem label={"Nike"} value={`$${highestSpending.toFixed(2)}`} />
+      <SummaryItem
+        label={highestSpendingName}
+        value={`$${highestSpending.toFixed(2)}`}
+      />
       <Text style={styles.summarySubtitle}>Low Spending</Text>
       <SummaryItem
-        label={"Tim Hortons"}
+        label={lowestSpendingName}
         value={`$${lowestSpending.toFixed(2)}`}
       />
     </View>
