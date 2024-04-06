@@ -2,6 +2,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import Route from "./src/Route";
 import { Platform } from "react-native";
+import { getApps } from "firebase/app";
+import { firebaseApp } from "./src/config/firebaseConfig";
+
+if (getApps().length < 1) {
+  firebaseApp();
+}
 
 export default function App() {
   return (

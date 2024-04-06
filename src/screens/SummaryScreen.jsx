@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { BASE_COLOR } from "../consts/colors";
-import { transactionData } from "../consts/dummyData";
 import SummaryItem from "../components/SummaryItem";
 
-export default function SummaryScreen() {
+export default function SummaryScreen({ transactionData }) {
   const totalNumberOfTransactions = transactionData.length;
 
   const totalBalance = transactionData.reduce(

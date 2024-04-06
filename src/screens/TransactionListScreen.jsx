@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import TransactionItem from "../components/TransactionItem";
 import { BASE_COLOR } from "../consts/colors";
-import { transactionData } from "../consts/dummyData";
+// import { transactionData } from "../consts/dummyData";
 
 const RenderItem = ({ item }) => {
   return <TransactionItem transactionItem={item} />;
@@ -12,7 +12,7 @@ const ItemSeperatorComponent = () => {
   return <View style={styles.divider} />;
 };
 
-export default function TransactionListScreen() {
+export default function TransactionListScreen({ transactionData = [] }) {
   return (
     <View style={styles.container}>
       <FlatList
